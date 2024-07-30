@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RK Bots</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCQV1HT2PP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GCQV1HT2PP');
+    </script>
+    <!-- Fim do Google Analytics -->
+
+    <script>
+      // Função para enviar dados para o webhook do Discord
+      function enviarParaDiscord(url) {
+          const webhookURL = 'https://discord.com/api/webhooks/1263579778984968325/g8_hNEkWiTsF-OpDc6STa6vpf7VPnIaAETPzA0BHqAsx8Qs14hCyDhnwscfewv686DdI';
+          const mensagem = {
+              content: `Um usuário acessou: ${url}`
+          };
+
+          fetch(webhookURL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(mensagem)
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro ao enviar para o Discord: ' + response.statusText);
+              }
+              return response.json();
+          })
+          .then(data => console.log('Sucesso!', data))
+          .catch(error => console.error('Erro!', error.message));
+      }
+
+      // Captura a URL atual
+      const currentURL = window.location.href;
+      enviarParaDiscord(currentURL);
+    </script>
+    <style>
+        body {
+            background-color: #2C2F33;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .verification-container {
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .verification-container .checkmark {
+            width: 100px;
+            height: 100px;
+        }
+        .verification-container .message {
+            font-size: 24px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 10px;
+        }
+        .verification-container .details {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .verification-container .details a {
+            color: #7289DA;
+            text-decoration: none;
+        }
+        .verification-container .details a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <img src="735070404875649069.webp" alt="Checkmark" class="checkmark">
+        <div class="message">Verificado com Sucesso!</div>
+        <div class="details">
+            Para mais detalhe, acesso nosso discord <a href="https://discord.gg/wzsRR88GsD">RK Bots</a>.
+        </div>
+    </div>
+</body>
+</html>
